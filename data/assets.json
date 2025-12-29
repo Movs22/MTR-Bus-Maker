@@ -1,0 +1,149 @@
+{
+    "colors": [
+        {
+            "name": "CUSTOM",
+            "col": "CUSTOM"
+        },
+        {
+            "name": "white",
+            "col": "#ffffff"
+        },
+        {
+            "name": "snow",
+            "col": "#fffbfb"
+        },
+        {
+            "name": "light_grey",
+            "col": "#d3d3d3"
+        },
+        {
+            "name": "grey",
+            "col": "#a9a9a9"
+        },
+        {
+            "name": "dark_grey",
+            "col": "#555555"
+        },
+        {
+            "name": "black",
+            "col": "#000000"
+        },
+        {
+            "name": "red",
+            "col": "#ff0000"
+        },
+        {
+            "name": "dark_orange",
+            "col": "#ff8c00"
+        },
+        {
+            "name": "yellow",
+            "col": "#ffff00"
+        },
+        {
+            "name": "gold",
+            "col": "#ffd700"
+        },
+        {
+            "name": "lime",
+            "col": "#00ff00"
+        },
+        {
+            "name": "green",
+            "col": "#008000"
+        },
+        {
+            "name": "blue",
+            "col": "#0000ff"
+        },
+        {
+            "name": "royal_blue",
+            "col": "#4169e1"
+        },
+        {
+            "name": "purple",
+            "col": "#800080"
+        },
+        {
+            "name": "violet",
+            "col": "#ee82ee"
+        },
+        {
+            "name": "salmon",
+            "col": "#fa8072"
+        },
+        {
+            "name": "light_coral",
+            "col": "#f08080"
+        },
+        {
+            "name": "light_orange",
+            "col": "#ffb347"
+        },
+        {
+            "name": "light_yellow",
+            "col": "#efef70"
+        },
+        {
+            "name": "light_green",
+            "col": "#90ee90"
+        },
+        {
+            "name": "light_blue",
+            "col": "#add8e6"
+        },
+        {
+            "name": "light_purple",
+            "col": "#d8bfd8"
+        },
+        {
+            "name": "plum",
+            "col": "#dda0dd"
+        },
+        {
+            "name": "lavender",
+            "col": "#e6e6fa"
+        },
+        {
+            "name": "maroon",
+            "col": "#800000"
+        },
+        {
+            "name": "dark_red",
+            "col": "#8b0000"
+        },
+        {
+            "name": "tangerine",
+            "col": "#f28500"
+        },
+        {
+            "name": "lemon",
+            "col": "#fff700"
+        },
+        {
+            "name": "mint",
+            "col": "#98ff98"
+        },
+        {
+            "name": "sky_blue",
+            "col": "#87ceeb"
+        },
+        {
+            "name": "orchid",
+            "col": "#da70d6"
+        },
+        {
+            "name": "brown",
+            "col": "#8b5e3c"
+        },
+        {
+            "name": "dark_brown",
+            "col": "#4b2e1f"
+        }
+        
+    ],
+    "floors": ["CUSTOM", "wood0.png","plastic0.png"],
+    "seat": ["CUSTOM", "bustrix0.png", "bustrix1.png", "bustrix2.png", "bustrix3.png", "bustrix4.png", "bustrix5.png"],
+    "decals": ["CUSTOM","paintBrush.png"],
+    "overlays": [{ "id": "CUSTOM"}]
+}

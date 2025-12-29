@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Movies22's Bus Maker</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three/build/three.module.min.js"
+  }
+}
+</script>
+</head>
+
+<body>
+    <datalist id="vehiclesList">
+    </datalist>
+    <navbar>
+        <b>Movies22's Bus Maker</b>
+        <button id="about" disabled>About</button>
+        <button id="import" disabled>Import (Disabled)</button>
+        <button id="tutorial">WARNING: THIS SITE IS STILL IN EARLY ALPHA</button>
+        <button id="support" onclick="window.open('https://discord.gg/TWAHW4Wrs8', '_blank').focus();"><img src="assets/discord-icon.png">Support</button>
+    </navbar>
+    <canvas id="resizeCanvas" width="1024" height="1024" style="display:none"></canvas>
+    <div id="app">
+        <p id="title">Untitled Operator</p>
+        <div id="sidebar">
+            <div id="header"><b style="font-size: 1.5rem;">Vehicles</b> <button id="addVehicle"
+                    onclick="addVehicle()">+</button></div>
+
+        </div>
+        <div id="colour">
+            <div class="extraSelect" id="colorSelect">
+                <button id="close">x</button>
+                <div id="header"><b style="font-size: 1.5rem;">Select a colour</b></div>
+                <div class="elements">
+                </div>
+            </div>
+            <div class="extraSelect" id="seatSelect">
+                <button id="close">x</button>
+                <div id="header"><b style="font-size: 1.5rem;">Select a seat mouquette</b></div>
+                <span class="note"><b>Note: </b>Seat mouquettes should be <b>1024x1024</b> or have a 1:1 aspect ratio</span>
+                <div class="elements">
+                </div>
+            </div>
+            <div class="extraSelect" id="floorSelect">
+                <button id="close">x</button>
+                <div id="header"><b style="font-size: 1.5rem;">Select a floor</b></div>
+                <span class="note"><b>Note: </b>Custom floors should be <b>1024x1024</b> or have a 1:1 aspect ratio</span>
+                <div class="elements">
+                </div>
+            </div>
+            <div class="extraSelect" id="decalSelect">
+                <button id="close">x</button>
+                <div id="header"><b style="font-size: 1.5rem;">Add a decal</b></div>
+                <div class="elements">
+                </div>
+                <div id="header"><b style="font-size: 1.5rem;">Added decals</b></div>
+                <div class="elements" id="addedDecals">
+                    <span class="note"><i>No decals have been added</i></span>
+                </div>
+                <span class="note"><b>Note: </b>Custom decals should be <b>1024x1024</b> or have a 1:1 aspect ratio</span>
+                <div class="decalSettings">
+                    <button id="close">x</button>
+                    <div id="header"><b style="font-size: 1.5rem;">Edit decal</b> <span class="note">paintbrush_0</span></div>
+                    <div class="buttons"><button onclick="decalEditor('delete')">Delete</button><button onclick="decalEditor('reset')">Reset</button></div>
+                    <label for="face">Face: </label><select id="face">
+                        <option value="front">Front</option>
+                        <option value="door">Door side</option>
+                        <option value="driver">Driver side</option>
+                        <option value="roof">Roof</option>
+                        <option value="back">Back</option>
+                    </select>
+                    <div class="options">
+                        <div class="row">
+                        <label for="x"><b>X:</b></label><input type="range" id="x" min="0" max="100" step="1" value="0"><label for="x">100%</label>
+                        </div>
+                        <div class="row">
+                        <label for="y"><b>Y:</b></label><input type="range" id="y" min="0" max="100" step="1" value="0"><label for="y">100%</label>
+                        </div>
+                        <div class="row">
+                        <label for="sizeX"><b>Width:</b></label><input type="range" id="sizeX" min="10" max="400" step="2" value="100"><label for="sizeX">100%</label>
+                        <label for="sizeLock">Keep aspect ratio:</label><input type="checkbox" id="sizeLock" checked="true">
+                        </div>
+                        <div class="row">
+                        <label for="sizeY"><b>Height:</b></label><input type="range" id="sizeY" min="10" max="400" step="2" value="100"><label for="sizeY">100%</label>
+                        <label for="layer"><b>Layer: </b></label><input type="number" id="layer" min="1" max="100" value="1">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="extraSelect" id="overlaySelect">
+                <button id="close">x</button>
+                <div id="header"><b style="font-size: 1.5rem;">Add an overlay</b></div>
+                <div class="elements">
+                </div>
+                <div id="header"><b style="font-size: 1.5rem;">Added overlays</b></div>
+                <div class="elements" id="addedDecals">
+                    <span class="note"><i>No overlays have been added</i></span>
+                </div>
+                <span class="note"><b>Note: </b>Custom overlays should be <b>1024x1024</b> and use <a id="templateDownload">this</a> template.</span>
+                <div class="decalSettings">
+                    <button id="close">x</button>
+                    <div id="header"><b style="font-size: 1.5rem;">Edit overlay</b></div>
+                    <div class="buttons"><button onclick="overlayEditor('delete')">Delete</button><button onclick="overlayEditor('reset')">Reset</button></div>
+                    <div class="options">
+                        <div class="row">
+                        <label for="color"><b>Color:</b></label><input type="color" id="color">
+                        <span style="width: 3rem;"></span>
+                        <label for="layer"><b>Layer: </b></label><input type="number" id="layer" min="1" max="100" value="1">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div id="header"><b style="font-size: 1.5rem;">Texturing</b></div>
+            <div id="mainColor" class="select">Main colour: <button id="bodyPane" class="colSel" onclick="showColorPane('body')"></button></div>
+            <div id="poleColor" class="select">Pole colour: <button id="polePane" class="colSel" onclick="showColorPane('pole')"></button></div>
+            <div id="stopButton" class="select">Stop button colour: <button id="stopPane" class="colSel" onclick="showColorPane('stop')"></button></div>
+            <div id="seatSel" style="line-height: 2.5rem !important" class="select" onclick="showImagePane('seat')">Seat mouquette: <button
+                    class="imageSel"><img id="seatPane"></button></div>
+            <div id="floorSel" style="line-height: 2.5rem !important" class="select" onclick="showImagePane('floor')">Floor: <button
+                    class="imageSel"><img id="floorPane"></button></div>
+            <div class="lowerButtons">
+                <button id="editBody" onclick="showChasisEditor()">Edit Body</button>
+                <button id="editDecal" onclick="showDecalPane()">Add/Edit Decals</button>
+            </div>
+            
+        </div>
+        <canvas id="scene"></canvas>
+        <span id="warning">Please add/select a vehicle from the sidebar</span>
+    </div>
+    <div id="companySetup">
+        <div id="main">
+            <button id="close" onclick="closeCompany()">x</button>
+            <p class="header">Operator Setup</p>
+            <label for="company-name"><b>Name:</b></label>
+            <input id="company-name" placeholder="My Custom Operator">
+            <br>
+            <span id="company-id"><b>ID: </b>my_custom_operator</span>
+            <br>
+            <button id="save-company" class="disabled">Save</button>
+        </div>
+    </div>
+    <div id="busSelect">
+        <div id="main">
+            <button id="close" onclick="closeVehicle()">x</button>
+            <p class="header">Select a vehicle</p>
+            <div id="filters">
+                <label for="search-bus-mtr">Search:</label>
+                <input id="search-bus-mtr" placeholder="Conecto G" list="vehiclesList">
+                <br>
+                <label for="length">Length:</label>
+                <select id="length" multiple size="1">
+
+                </select>
+                <label for="make">Make:</label>
+                <select id="make" multiple size="1">
+                </select>
+
+                <label for="doors">Doors:</label>
+                <select id="doors" multiple size="1">
+
+                </select>
+            </div>
+            <div id="vehicles">
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./render.js"></script>
+    <script src="./busSelect.js"></script>
+    
+    <script src="./editor.js"></script>
+</body>
+
+</html>

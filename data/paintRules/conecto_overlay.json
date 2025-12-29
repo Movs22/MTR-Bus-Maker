@@ -1,0 +1,35 @@
+{
+    "door": {
+        "pos": [34, 32],
+        "size": [1984, 428],
+        "rotate": 90,
+        "flipClientX": true,
+        "flipClientY": true
+    },
+    "driver": {
+        "pos": [526, 32],
+        "size": [1984, 428],
+        "rotate": 90,
+        "flipX": true,
+        "flipClientY": true
+    },
+    "roof": {
+        "pos": [1012, 88],
+        "size": [1928, 428],
+        "rotate": -90,
+        "flipClientY": true
+    },
+    "back": {
+        "pos": [1498, 1600],
+        "size": [416, 386],
+        "rotate": 90,
+        "flipClientY": true
+    },
+    "front": {
+        "pos": [1498, 1140],
+        "size": [396, 158],
+        "rotate": 90,
+        "flipX": true,
+        "flipClientY": true
+    }
+}

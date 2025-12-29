@@ -1,0 +1,43 @@
+{
+    "mb_conecto": {
+        "dir": "models/conecto/",
+        "name": "Conecto",
+        "meta": {
+            "doors": 3,
+            "length": 12
+        },
+        "default_mode": "LHD",
+        "lhd": "conecto",
+        "rhd": "conecto_r",
+        "make": "Mercedes Benz",  
+        "page": "https://www.mercedes-benz-bus.com/int/en/models/conecto.html",
+        "id": "mb_conecto",
+        "colors": {
+            "body": "#ffffff",
+            "pole": "#555555",
+            "stop": "#ffd700",
+            "seat": "bustrix0",
+            "floor": "wood0"
+        },
+        "textures": [{
+            "type": "body",
+            "name": "base.png",
+            "paintRules": "conecto_base.json"
+        }, {
+            "type": "seat",
+            "name": "seat.png"
+        }, {
+            "type": "floor",
+            "name": "floor.png"
+        }, {
+            "type": "interior_glass_pane",
+            "name": "interior_glass.png"
+        }, {
+            "type": "overlay",
+            "name": "overlay.png",
+            "paintRules": "conecto_overlay.json"
+        }],
+        "chassis": ["conecto_base.json"]
+    }
+    
+}

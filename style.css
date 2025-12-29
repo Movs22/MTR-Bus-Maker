@@ -1,0 +1,673 @@
+:root {
+    color-scheme: light dark;
+    --background-color: light-dark(#efefef, #1f1f1f);
+    --navbar-color: light-dark(#afafaf, #5f5f5f);
+    --app-pane-color: light-dark(#9ebadb7f, #44505f7f);
+    --accent-color: light-dark(#518fd7, #4275af);
+    --text-color-dark: light-dark(#000000, #ffffff);
+    --text-color-dark-shade: light-dark(#303030, #cfcfcf);
+}
+
+html, body {
+    background-color: var(--background-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+navbar {
+    background-color: var(--navbar-color);
+    width: calc(100% - 1rem);
+    font-size: 1.5rem;
+    display: flex;
+    padding: .5rem;
+    border-radius: 1rem;
+    gap: 1.5rem;
+    z-index: 1000;
+    position: relative;
+}
+
+navbar #support {
+    float: right;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+navbar button {
+    vertical-align: middle;
+    background-color: var(--accent-color);
+    border-style: none;
+    font-weight: bold;
+    color: var(--text-color-dark);
+    border-radius: .5rem;
+    transition: .5s;
+}
+
+navbar button:hover {
+    cursor: pointer;
+    background-color: var(--navbar-color);
+    color: var(--text-color-dark);
+    transition: .2s;
+}
+
+navbar button img {
+    vertical-align: middle;
+    height: 2rem;
+}
+
+#app {
+    margin-top: 1rem;
+    background-color: var(--navbar-color);
+    width: calc(100% - 1rem);
+    height: calc(100vh - 6.25rem);
+    padding: .5rem;
+    border-radius: 1.5rem;
+    position: relative;
+}
+
+#sidebar {
+    background-color: var(--app-pane-color);
+    width: 25rem;
+    min-height: 2rem;
+    max-height: 40%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: .5rem;
+    top: .5rem;
+    z-index: 10;
+    order: 2;
+    padding: .5rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    color: var(--text-color-dark);
+}
+
+#colour {
+    background-color: var(--app-pane-color);
+    width: 25rem;
+    min-height: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: .5rem;
+    bottom: .5rem;
+    z-index: 10;
+    order: 2;
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: .5rem;
+    color: var(--text-color-dark);
+}
+
+.extraSelect {
+    background-color: var(--app-pane-color);
+    width: calc(100% - .5rem);
+    min-height: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: translate(0, -100%);
+    top: -.5rem;
+    left: 0rem;
+    z-index: 10;
+    order: 2;
+    padding: .5rem;
+    padding-right: 0rem;
+    border-radius: .5rem;
+    color: var(--text-color-dark);
+}
+
+.extraSelect .decalSettings {
+    position: absolute;
+    background-color: var(--app-pane-color);
+    padding: .5rem;
+    border-radius: .5rem;
+    top: 100%;
+    margin: .5rem;
+    width: 25rem;
+    left: 100%;
+}
+
+.extraSelect .decalSettings .buttons {
+    padding-top: .5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.extraSelect .decalSettings .buttons button {
+    background-color: var(--accent-color);
+    padding: .25rem;
+    border-radius: .5rem;
+    border: none;
+    width: 4rem;
+    font-size: .8rem;
+    cursor: pointer;
+    transition: .25s background-color;
+}
+
+.extraSelect .decalSettings .buttons button:hover {
+    background-color: var(--app-pane-color);
+    transition: .25s background-color;
+}
+
+.extraSelect .decalSettings .options {
+    font-size: .8rem;
+}
+
+.extraSelect .decalSettings .options .row {
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: .25rem;
+}
+
+.extraSelect .decalSettings .options .row:not(:last-child) {
+    border-bottom: var(--text-color-dark) .1rem dashed;
+}
+
+.extraSelect .decalSettings .options .row input {
+    margin-top: 3px;
+}
+
+.extraSelect .decalSettings .options .row label {
+    min-width: 3rem;
+}
+
+.extraSelect div.elements {
+    display: flex;
+    flex-flow: row wrap;
+    gap: .5rem;
+    padding: .25rem;
+    padding-bottom: .5rem;
+    overflow-y: auto;
+    padding-right: 0rem !important;
+    max-height: 13.5rem;
+}
+
+.extraSelect div.elements button {
+    width: 3rem;
+    height: 3rem;
+    border: black .25rem solid;
+    transition: all .25s;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+    position: relative;
+}
+
+.extraSelect div.elements button input, .extraSelect div.elements button img {
+    border: none;
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0;
+    left: 0px;
+    top: 0px;
+}
+
+.extraSelect div.elements button span {
+    border: none;
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0;
+    left: 0px;
+    top: 0px;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--accent-color);
+}
+
+#colorSelect div.elements button img {
+    z-index: 4;
+    pointer-events: none;
+    filter: drop-shadow(0 0 2px white) drop-shadow(0 0 2px white) invert(1);
+}
+
+input[type="color"] {
+  border-radius: 5px;
+  padding: 0;
+  border: 5px solid #DDD;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+.extraSelect div.elements button.sel {
+    border: var(--accent-color) .25rem solid;
+}
+
+.extraSelect div.elements button:hover {
+    width: 3rem;
+    height: 3rem;
+    border: var(--accent-color) .25rem solid;
+    transition: all .25s;
+}
+
+#colour div.select {
+    display: flex;
+    line-height: 1.2rem;
+    font-size: 1.2rem;
+    padding: .25rem;
+    padding-bottom: .5rem;
+}
+
+#colour div.select:not(:last-child) {
+    border-bottom: var(--text-color-dark) .2rem dashed;
+}
+
+#colour div.select button.colSel {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: #010101 .2rem;
+    border-style: solid;
+    background-color: #ff00ff;
+    right: .5rem;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+#colour div.select button.imageSel {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: #010101 .2rem;
+    border-style: solid;
+    background-color: #000000;
+    right: .5rem;
+    position: absolute;
+    padding: 0;
+    display: flex;           
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#colour div.select button.imageSel img {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+#colour .lowerButtons {
+    padding-top: .5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#colour .lowerButtons button {
+    background-color: var(--accent-color);
+    padding: .5rem;
+    border-radius: .5rem;
+    border: none;
+    width: 30%;
+    cursor: pointer;
+    transition: .25s background-color;
+}
+
+#colour .lowerButtons button:hover {
+    background-color: var(--app-pane-color);
+    transition: .25s background-color;
+}
+
+#sidebar * {
+    vertical-align: middle;
+}
+
+#sidebar #header {
+    position: sticky;
+    background-color: var(--app-pane-color);
+    top: 0rem;
+}
+
+#sidebar div:not(:first-child) {
+    margin-top: .5rem;
+}
+
+#sidebar #bus {
+    height: 2.5rem;
+    transition: .5s background-color;
+}
+
+#sidebar #bus input {
+    cursor: pointer;
+}
+
+#sidebar #bus.selected input {
+    cursor: text !important;
+}
+
+#sidebar #bus:hover {
+    background-color: var(--accent-color);
+    transition: .5s background-color;
+}
+
+#sidebar #bus.selected {
+    background-color: var(--accent-color);
+    height: 5.25rem;
+}
+
+#sidebar #bus .info {
+    display: none;
+}
+
+#sidebar #bus.selected .info {
+    display: block;
+    padding: .25rem;
+    font-size: .75rem;
+    margin: 0px;
+    background-color: var(--app-pane-color);
+}
+
+#sidebar #bus.selected .info .doorSelect span {
+    font-weight: bold;
+}
+
+#sidebar #bus.selected .info .doorSelect button {
+    background-color: var(--background-color);
+    margin: 0px;
+    border: 0;
+    margin: 0px !important;
+    padding: .25rem;
+    line-height: .75rem;
+    width: 3rem;
+    transition: .25s background-color;
+}
+
+#sidebar #bus.selected .info .doorSelect button.delBtn {
+    background-color: var(--background-color);
+    margin: 0px;
+    float: right;
+    border: 0;
+    margin: 0px !important;
+    padding: .25rem;
+    line-height: .75rem;
+    width: 5rem;
+    transition: .25s background-color;
+}
+
+#sidebar #bus.selected .info .doorSelect button.active {
+    background-color: var(--accent-color);
+}
+
+#sidebar #bus.selected .info .doorSelect button:hover {
+    background-color: var(--accent-color);
+    transition: .25s background-color;
+}
+
+#sidebar #bus input {
+    background-color: transparent;
+    border: none;
+    padding: .5rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    width: calc(100% - 1rem);
+    margin: 0px;
+    font-size: 1.5rem;
+}
+
+#scene {
+    background-color: #3f3f3f;
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+    position: absolute;
+    display: block;
+    left: .5rem;
+    top: .5rem;
+    z-index: 1;
+    order: 1;
+    border-radius: 1rem;
+}
+
+#app #title {
+    position: absolute;
+    width: calc(100% - 1rem);
+    text-align: center;
+    z-index: 2;
+    margin: 0;
+    padding: .5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+span#warning {
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #cfcfcf;
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#sidebar button img {
+    height: 1rem;
+    vertical-align: middle;
+    aspect-ratio: 1;
+    color: var(--text-color-dark);
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+    margin-right: .5rem;
+}
+
+#sidebar button {
+    background-color: transparent;
+    border-style: none;
+    height: 2rem;
+    color: var(--text-color-dark);
+    padding: 0px;
+    cursor: pointer;
+}
+
+#sidebar button#addVehicle {
+    right: .5rem;
+    left: auto;
+    position: absolute;
+    width: 2rem;
+    font-size: 1.5rem;
+    border-style: none;
+    font-weight: bold;
+}
+
+#busSelect #main #close, #companySetup #main #close {
+    position: absolute;
+    border-style: none;
+    font-weight: bold;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: .5rem;
+    background-color: var(--accent-color);
+}
+
+.extraSelect #close {
+    position: absolute;
+    border-style: none;
+    font-weight: bold;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: .5rem;
+    right: .5rem;
+    cursor: pointer;
+    background-color: var(--accent-color);
+}
+
+.extraSelect .note {
+    font-size: .8rem;
+    color: var(--text-color-dark-shade);
+}
+
+.note a {
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+#busSelect #main #close:hover, #companySetup #main #close:hover {
+   cursor: pointer;
+   background-color: var(--app-pane-color);
+}
+
+#busSelect, #companySetup {
+    background-color: #1f1f1f7f;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+    z-index: 99;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#busSelect #main, #companySetup #main {
+    background-color: var(--navbar-color);
+    border-radius: 1rem;
+    padding: .5rem;
+    position: relative;
+    width: auto; 
+}
+
+#busSelect #main p, #companySetup #main p {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px;
+    border-bottom: var(--text-color-dark) .1rem dashed;
+}
+
+#companySetup #main input, #companySetup #main label{
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    width: 20rem;
+    line-height: 1.2rem;
+}
+
+#companySetup #main #save-company {
+    text-align: center !important;
+    justify-content: center !important;
+    left: 50%;
+    transform: translate(-50%); 
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: .5rem;
+    border-width: 0;
+    width: 4rem;
+    position: relative;
+    align-content: center !important;
+    background-color: var(--accent-color);
+}
+
+#companySetup #main #save-company:hover {
+    background-color: var(--app-pane-color);
+}
+
+#companySetup #main #save-company.disabled {
+    cursor: not-allowed !important;
+    background-color: var(--app-pane-color) !important;
+}
+
+
+#companySetup #main span {
+    font-size: .8rem;
+    line-height: .8rem;
+}
+
+#busSelect #main #filters {
+    width: 32rem;
+    text-align: left;
+    margin-bottom: .5rem;
+}
+
+#busSelect #main #filters select:not(:last-child) {
+    margin-right: 1rem;
+}
+
+#busSelect #main #filters select {
+    position: relative;
+}
+
+#busSelect #main #vehicles {
+    display: flex;
+    flex-flow: row wrap;
+    width: 33rem;
+    max-height: 24rem;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#busSelect #main #vehicles div {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin: .25rem;
+    background-color: green;
+    position: relative;
+}
+
+#busSelect #main #vehicles div button {
+    z-index: 2;
+    position: absolute;
+    bottom: .25rem;
+    right: .25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--accent-color);
+    cursor: pointer;
+    border: none;
+    border-radius: .25rem;
+}
+
+#busSelect #main #vehicles div img {
+    width: 100%;
+    height: 100%;
+}
+
+#busSelect #main #vehicles div span.model {
+    z-index: 2;
+    position: absolute;
+    bottom: .25rem;
+    left: .25rem;
+    font-size: .7rem;
+}
+
+#busSelect #main #vehicles div span.make {
+    z-index: 2;
+    position: absolute;
+    bottom: .95rem;
+    left: .25rem;
+    font-size: .6rem;
+    font-weight: bold;
+}

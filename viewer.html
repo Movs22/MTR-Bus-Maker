@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>3D Model Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: system-ui, sans-serif;
+        }
+
+        #ui {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 16px;
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #333;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="ui">
+        <button onclick="swapTexture('texture1.jpg')">Texture 1</button>
+        <button onclick="swapTexture('texture2.jpg')">Texture 2</button>
+    </div>
+
+    <canvas id="scene" style="width: 1024px; height: 1024px;"></canvas>
+    <script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three/build/three.module.min.js"
+  }
+}
+</script>
+
+    <script type="module">
+        import * as THREE from "https://unpkg.com/three/build/three.module.min.js";
+        import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
+        import { MTLLoader } from "https://unpkg.com/three/examples/jsm/loaders/MTLLoader.js";
+        import { OBJLoader } from "https://unpkg.com/three/examples/jsm/loaders/OBJLoader.js";
+
+        let scene, camera, renderer, controls, model;
+
+        init();
+        animate();
+
+        function init() {
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(35, 1, 0.1, 1000);
+
+            scene.background = new THREE.Color(0x7f7f7f);
+
+            renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById("scene"),
+                antialias: true,
+                alpha: true,
+                preserveDrawingBuffer: true
+            });
+            renderer.setSize(1024, 1024);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enablePan = true;
+            controls.enableDamping = true;
+            controls.minDistance = 2;
+            controls.maxDistance = 100;
+            controls.maxPolarAngle = Math.PI / 1.8;
+
+            scene.add(new THREE.AmbientLight(0xffffff, 1.0));
+            const light = new THREE.DirectionalLight(0xffffff, 0.6);
+            light.position.set(15, 15, 15);
+            scene.add(light);
+
+            const mtlLoader = new MTLLoader();
+            mtlLoader.setPath("data/models/conectog/");
+            mtlLoader.load("conecto_g.mtl", materials => {
+                materials.preload();
+
+                const objLoader = new OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath("data/models/conectog/");
+                objLoader.load("conecto_g.obj", obj => {
+                    model = obj;
+                    console.log(model.position)
+                    model.traverse(child => {
+                        console.log(
+                            child.type,
+                            child.name,
+                            child.isMesh ? "MESH" : ""
+                        );
+                        if (child.isMesh) {
+
+                            child.geometry.computeVertexNormals();
+                            if (child.name.includes("Glass")) {
+                                child.material.transparent = true;
+                                child.material.alphaTest = 0.01;
+                                child.material.blending = THREE.NormalBlending;
+
+                            }
+                        }
+                    });
+                    //centerModel(model);
+                    const box = new THREE.Box3().setFromObject(model);
+const center = box.getCenter(new THREE.Vector3());
+const sphere = box.getBoundingSphere(new THREE.Sphere());
+const radius = sphere.radius;
+const fov = THREE.MathUtils.degToRad(camera.fov);
+const padding = 1; // thumbnail breathing room
+
+const distance = (radius / Math.sin(fov / 2)) * padding;
+model.position.sub(center);
+camera.position.set(
+  distance * 0.8,  // right
+  distance * 0.1, // up
+  distance * -0.8   // front
+);
+
+camera.lookAt(0, 0, 0);
+
+                    scene.add(model)
+});
+            });
+
+            window.addEventListener("resize", onResize);
+        }
+
+        function centerModel(obj) {
+            const box = new THREE.Box3().setFromObject(obj);
+            const center = box.getCenter(new THREE.Vector3());
+            obj.position.sub(center);
+        }
+
+        window.swapTexture = function (img) {
+            if (!model) return;
+            const tex = new THREE.TextureLoader().load("model/" + img);
+            model.traverse(child => {
+                if (child.isMesh) {
+                    console.log(child)
+                    child.material.map = tex;
+                    child.material.needsUpdate = true;
+                }
+            });
+        };
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        function onResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+
+    </script>
+    <script>
+        var download = function () {
+            var link = document.createElement('a');
+            link.download = 'render.png';
+            link.href = document.getElementById('scene').toDataURL()
+            link.click();
+        }
+    </script>
+
+</body>
+
+</html>

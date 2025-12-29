@@ -1,0 +1,116 @@
+{
+    "colors": [
+        {
+            "name": "white",
+            "col": "#ffffff"
+        },
+        {
+            "name": "light_grey",
+            "col": "#d3d3d3"
+        },
+        {
+            "name": "grey",
+            "col": "#a9a9a9"
+        },
+        {
+            "name": "dark_grey",
+            "col": "#555555"
+        },
+        {
+            "name": "black",
+            "col": "#000000"
+        },
+        {
+            "name": "beige",
+            "col": "#f5f5dc"
+        },
+        {
+            "name": "light_brown",
+            "col": "#c4a484"
+        },
+        {
+            "name": "brown",
+            "col": "#8b5e3c"
+        },
+        {
+            "name": "dark_brown",
+            "col": "#4b2e1f"
+        },
+        {
+            "name": "blue",
+            "col": "#0000ff"
+        },
+        {
+            "name": "dark_blue",
+            "col": "#00008b"
+        },
+        {
+            "name": "cyan",
+            "col": "#00ffff"
+        },
+        {
+            "name": "teal",
+            "col": "#008080"
+        },
+        {
+            "name": "light_green",
+            "col": "#50ee75"
+        },
+        {
+            "name": "green",
+            "col": "#008000"
+        },
+        {
+            "name": "dark_green",
+            "col": "#006400"
+        },
+        {
+            "name": "lime",
+            "col": "#00ff00"
+        },
+        {
+            "name": "yellow",
+            "col": "#ffff00"
+        },
+        {
+            "name": "gold",
+            "col": "#ffd700"
+        },
+        {
+            "name": "orange",
+            "col": "#ffa500"
+        },
+        {
+            "name": "dark_orange",
+            "col": "#ff8c00"
+        },
+        {
+            "name": "red",
+            "col": "#ff0000"
+        },
+        {
+            "name": "dark_red",
+            "col": "#8b0000"
+        },
+        {
+            "name": "pink",
+            "col": "#ff69b4"
+        },
+        {
+            "name": "magenta",
+            "col": "#ff00ff"
+        },
+        {
+            "name": "purple",
+            "col": "#800080"
+        },
+        {
+            "name": "violet",
+            "col": "#ee82ee"
+        },
+        {
+            "name": "CUSTOM",
+            "col": "CUSTOM"
+        }
+    ]
+}
